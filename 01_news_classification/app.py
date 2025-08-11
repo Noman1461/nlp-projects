@@ -1,6 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 import joblib
 
+def setup_nltk():
+    import nltk
+    nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
+    nltk.download('stopwords', quiet=True)
+
+setup_nltk()
+
 # Load full pipeline (preprocessor + tfidf + logistic model)
 pipeline = joblib.load("models/news_classifier_pipeline.pkl")
 
