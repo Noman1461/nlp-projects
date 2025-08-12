@@ -1,8 +1,10 @@
 #importing necessary libraries
+import nltk
+# Add the NLTK data path so it knows where to look
+nltk.data.path.append("/opt/render/nltk_data")
+
 from flask import Flask, render_template, request, jsonify
 import joblib
-import nltk
-
 
 # Load full pipeline (preprocessor + tfidf + logistic model)
 pipeline = joblib.load("models/news_classifier_pipeline.pkl")
@@ -15,13 +17,6 @@ label_map = {
     4: "Technology"
 }
 
-def setup_nltk():
-    
-    nltk.download('punkt', quiet=True)
-    nltk.download('punkt_tab', quiet=True)
-    nltk.download('stopwords', quiet=True)
-
-setup_nltk()
 # Confidence threshold: tune this using validation set. 0.60 is a reasonable starting point.
 CONFIDENCE_THRESHOLD = 0.60
 MIN_WORDS = 5        # client + server side minimal "article-like" heuristic

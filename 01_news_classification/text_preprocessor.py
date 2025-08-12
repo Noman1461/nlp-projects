@@ -1,12 +1,10 @@
 # text_preprocessor.py
-import nltk, re
+import nltk
+nltk.data.path.append("/opt/render/nltk_data")
+import re
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.base import BaseEstimator, TransformerMixin
-
-nltk.download('punkt')
-nltk.download('punkt_tab')
-nltk.download('stopwords')  # if you use stopwords
 
 class TextPreprocessor(BaseEstimator, TransformerMixin):
     def __init__(self):
