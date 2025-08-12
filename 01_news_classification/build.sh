@@ -6,11 +6,11 @@ set -o errexit
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# Create NLTK data directory
-mkdir -p /opt/render/nltk_data
+# # Create NLTK data directory
+# mkdir -p /opt/render/nltk_data
 
-# Download required NLTK data
-python -m nltk.downloader -d /opt/render/nltk_data punkt stopwords omw-1.4
+# # Download required NLTK data
+# python -m nltk.downloader -d /opt/render/nltk_data punkt stopwords omw-1.4
 
 
 
