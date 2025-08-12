@@ -2,14 +2,12 @@
 import nltk
 nltk.data.path.append("/opt/render/nltk_data")
 
-import os
-print("NLTK_DATA env var:", os.environ.get("NLTK_DATA"))
-
 from flask import Flask, render_template, request, jsonify
 import joblib
+import os
 
 # Load the trained pipeline
-pipeline = joblib.load("models/news_classifier_pipeline.pkl")
+pipeline = joblib.load("01_news_classification/models/news_classifier_pipeline.pkl")
 
 # Label mapping
 label_map = {
