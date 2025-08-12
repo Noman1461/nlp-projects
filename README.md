@@ -3,10 +3,11 @@
   <p><em>A machine learning-powered Flask app to classify news articles into categories like World, Sports, Business, and Technology.</em></p>
 </section>
 
-<div style="text-align: center; margin: 20px 0;">
-  <img src="01_news_classification/static/img/screenshot.png" alt="News Classification App Screenshot" style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px;" />
+<div style="margin: 20px 0; text-align: center;">
+  <img src="demo.png" 
+       alt="News Classification App Screenshot" 
+       style="width: 600px; height: auto; border: 1px solid #ccc; border-radius: 8px; display: block; margin: 0 auto;" />
 </div>
-
 
 <section id="overview">
   <h2>Overview</h2>
