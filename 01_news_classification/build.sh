@@ -10,7 +10,7 @@ pip install -r requirements.txt
 mkdir -p /opt/render/nltk_data
 
 # Download required NLTK data
-python -m nltk.downloader -d /opt/render/nltk_data punkt punkt_tab stopwords wordnet omw-1.4
+python -m nltk.downloader -d /opt/render/nltk_data punkt stopwords wordnet omw-1.4
 
 
 
