@@ -2,11 +2,7 @@ import os
 # Import NLTK and set data path to pre-downloaded directory
 import nltk
 nltk_data_dir = "/opt/render/nltk_data"
-nltk.download('punkt', download_dir=nltk_data_dir)
 nltk.download('punkt_tab', download_dir=nltk_data_dir)
-nltk.download('stopwords', download_dir=nltk_data_dir)
-nltk.download('wordnet', download_dir=nltk_data_dir)
-nltk.download('omw-1.4', download_dir=nltk_data_dir)
 nltk.data.path.append(nltk_data_dir)
 
 from flask import Flask, render_template, request, jsonify
