@@ -1,8 +1,16 @@
 import os
+from pathlib import Path
 # Import NLTK and set data path to pre-downloaded directory
 import nltk
-nltk.download('punkt', download_dir='/opt/render/nltk_data')
-nltk.data.path.append("/opt/render/nltk_data")
+NLTK_DATA_DIR = "/opt/render/nltk_data"
+Path(NLTK_DATA_DIR).mkdir(parents=True, exist_ok=True)
+
+# Download punkt BEFORE Flask app initialization
+nltk.download('punkt', download_dir=NLTK_DATA_DIR)
+nltk.download('stopwords', download_dir=NLTK_DATA_DIR)
+nltk.download('wordnet', download_dir=NLTK_DATA_DIR)
+
+nltk.data.path.append(NLTK_DATA_DIR)
 
 from flask import Flask, render_template, request, jsonify
 import joblib
@@ -64,5 +72,5 @@ def predict():
     })
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=False)
