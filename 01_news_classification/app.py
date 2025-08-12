@@ -7,7 +7,7 @@ import joblib
 import os
 
 # Load the trained pipeline
-pipeline = joblib.load("01_news_classification/models/news_classifier_pipeline.pkl")
+pipeline = joblib.load("models/news_classifier_pipeline.pkl")
 
 # Label mapping
 label_map = {

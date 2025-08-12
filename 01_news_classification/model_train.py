@@ -40,7 +40,7 @@ pipeline.fit(X_train, y_train)
 
 # 6. Save pipeline
 os.makedirs("models", exist_ok=True)
-joblib.dump(pipeline, "01_news_classification/models/news_classifier_pipeline.pkl")
+joblib.dump(pipeline, "models/news_classifier_pipeline.pkl")
 print("Model + Preprocessing saved as news_classifier_pipeline.pkl")
 
 # 7. Evaluate
