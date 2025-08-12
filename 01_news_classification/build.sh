@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
-# Install Python dependencies
+# Exit on error
+set -o errexit
+
+# Install dependencies
+pip install --upgrade pip
 pip install -r requirements.txt
 
-# Download NLTK data to a directory inside the Render persistent build area
-python -m nltk.downloader -d /opt/render/nltk_data punkt stopwords wordnet
+# Create NLTK data directory
+mkdir -p /opt/render/nltk_data
+
+# Download required NLTK data
+python -m nltk.downloader -d /opt/render/nltk_data punkt stopwords
 
 

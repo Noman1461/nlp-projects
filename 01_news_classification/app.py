@@ -1,15 +1,17 @@
-#importing necessary libraries
+# Import NLTK and set data path to pre-downloaded directory
 import nltk
-# Add the NLTK data path so it knows where to look
 nltk.data.path.append("/opt/render/nltk_data")
+
+import os
+print("NLTK_DATA env var:", os.environ.get("NLTK_DATA"))
 
 from flask import Flask, render_template, request, jsonify
 import joblib
 
-# Load full pipeline (preprocessor + tfidf + logistic model)
+# Load the trained pipeline
 pipeline = joblib.load("models/news_classifier_pipeline.pkl")
 
-# numeric label -> display name
+# Label mapping
 label_map = {
     1: "World",
     2: "Sports",
@@ -17,9 +19,9 @@ label_map = {
     4: "Technology"
 }
 
-# Confidence threshold: tune this using validation set. 0.60 is a reasonable starting point.
+# Classification thresholds
 CONFIDENCE_THRESHOLD = 0.60
-MIN_WORDS = 5        # client + server side minimal "article-like" heuristic
+MIN_WORDS = 5
 MIN_CHARS = 30
 
 app = Flask(__name__)
@@ -36,22 +38,18 @@ def predict():
     if not text:
         return jsonify({"error": "No text provided"}), 400
 
-    # Simple heuristics to catch very short / nonsense inputs
-    word_count = len(text.split())
-    if word_count < MIN_WORDS or len(text) < MIN_CHARS:
+    # Basic length checks
+    if len(text.split()) < MIN_WORDS or len(text) < MIN_CHARS:
         return jsonify({
             "error": f"Please enter a longer news-style article (more than {MIN_WORDS} words)."
         }), 422
 
     try:
-        # Predict probabilities and label
         probs = pipeline.predict_proba([text])[0]
         pred_num = int(pipeline.predict([text])[0])
     except AttributeError:
-        # Model has no predict_proba (unlikely for logistic regression)
         pred_num = int(pipeline.predict([text])[0])
-        category = label_map.get(pred_num, "Unknown")
-        return jsonify({"category": category, "probability": None})
+        return jsonify({"category": label_map.get(pred_num, "Unknown"), "probability": None})
 
     max_prob = float(probs.max())
 
@@ -60,11 +58,11 @@ def predict():
             "error": "Failed to classify the article with enough confidence. Please enter a clearer news article."
         }), 422
 
-    category = label_map.get(pred_num, "Unknown")
-    return jsonify({"category": category, "probability": round(max_prob, 3)})
+    return jsonify({
+        "category": label_map.get(pred_num, "Unknown"),
+        "probability": round(max_prob, 3)
+    })
 
 if __name__ == "__main__":
-    app.run(debug=False)
-
-# This code is for a Flask web application that serves a news classification model.
-# It includes a text preprocessor, a model pipeline, and endpoints for rendering the index page
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)

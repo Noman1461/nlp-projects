@@ -1,16 +1,13 @@
 # train_model.py
 import os
 import pandas as pd
-import re
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 import joblib
-import nltk
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
 from text_preprocessor import TextPreprocessor
 
 
