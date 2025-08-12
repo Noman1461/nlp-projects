@@ -3,6 +3,7 @@ import os
 import nltk
 nltk_data_dir = "/opt/render/nltk_data"
 nltk.download('punkt_tab', download_dir=nltk_data_dir)
+nltk.download('wordnet', download_dir=nltk_data_dir)
 nltk.data.path.append(nltk_data_dir)
 
 from flask import Flask, render_template, request, jsonify
