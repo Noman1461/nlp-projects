@@ -1,6 +1,7 @@
 #importing necessary libraries
 from flask import Flask, render_template, request, jsonify
 import joblib
+import nltk
 
 
 # Load full pipeline (preprocessor + tfidf + logistic model)
@@ -14,6 +15,13 @@ label_map = {
     4: "Technology"
 }
 
+def setup_nltk():
+    
+    nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
+    nltk.download('stopwords', quiet=True)
+
+setup_nltk()
 # Confidence threshold: tune this using validation set. 0.60 is a reasonable starting point.
 CONFIDENCE_THRESHOLD = 0.60
 MIN_WORDS = 5        # client + server side minimal "article-like" heuristic
@@ -62,3 +70,6 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=False)
+
+# This code is for a Flask web application that serves a news classification model.
+# It includes a text preprocessor, a model pipeline, and endpoints for rendering the index page
