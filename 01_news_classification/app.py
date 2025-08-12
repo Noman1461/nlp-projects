@@ -1,7 +1,13 @@
 import os
 # Import NLTK and set data path to pre-downloaded directory
 import nltk
-nltk.data.path.append("/opt/render/nltk_data")
+nltk_data_dir = "/opt/render/nltk_data"
+nltk.download('punkt', download_dir=nltk_data_dir)
+nltk.download('stopwords', download_dir=nltk_data_dir)
+nltk.download('wordnet', download_dir=nltk_data_dir)
+nltk.download('omw-1.4', download_dir=nltk_data_dir)
+nltk.data.path.append(nltk_data_dir)
+
 from flask import Flask, render_template, request, jsonify
 import joblib
 
@@ -22,10 +28,16 @@ MIN_WORDS = 5
 MIN_CHARS = 30
 
 app = Flask(__name__)
-
-@app.route("/")
-def index():
+# Health check endpoint
+@app.route('/')
+def home():
+    """Handle both health checks and serve frontend"""
     return render_template("index.html")
+
+@app.route('/health')
+def health_check():
+    """Dedicated health check endpoint"""
+    return "OK", 200
 
 @app.route("/predict", methods=["POST"])
 def predict():
