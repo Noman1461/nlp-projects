@@ -1,10 +1,12 @@
+import os
 # Import NLTK and set data path to pre-downloaded directory
 import nltk
+nltk.download('punkt', download_dir='/opt/render/nltk_data')
 nltk.data.path.append("/opt/render/nltk_data")
 
 from flask import Flask, render_template, request, jsonify
 import joblib
-import os
+
 
 # Load the trained pipeline
 pipeline = joblib.load("models/news_classifier_pipeline.pkl")
