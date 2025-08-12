@@ -7,14 +7,15 @@ Path(NLTK_DATA_DIR).mkdir(parents=True, exist_ok=True)
 
 # Download punkt BEFORE Flask app initialization
 nltk.download('punkt', download_dir=NLTK_DATA_DIR)
+nltk.download('punkt_tab', download_dir=NLTK_DATA_DIR)
 nltk.download('stopwords', download_dir=NLTK_DATA_DIR)
 nltk.download('wordnet', download_dir=NLTK_DATA_DIR)
+nltk.download('omw-1.4', download_dir=NLTK_DATA_DIR)
 
 nltk.data.path.append(NLTK_DATA_DIR)
 
 from flask import Flask, render_template, request, jsonify
 import joblib
-
 
 # Load the trained pipeline
 pipeline = joblib.load("models/news_classifier_pipeline.pkl")
@@ -74,3 +75,4 @@ def predict():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=False)
+ 
