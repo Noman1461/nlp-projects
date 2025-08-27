@@ -1,12 +1,14 @@
-<section id="project-title">
-  <h1>News Classification with Flask</h1>
-  <p><em>A machine learning-powered Flask app to classify news articles into categories like World, Sports, Business, and Technology.</em></p>
+<section id="project-title" style="display: flex; align-items: center; gap: 20px;">
+  <a href="https://nlp-projects-izkh.onrender.com/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-align: center; text-decoration: none; font-weight: bold; border-radius: 4px; flex-shrink: 0;">
+    🚀 Try the Live Demo
+  </a>
+  <div>
+    <h1>News Classification with Flask</h1>
+    <p><em>A machine learning-powered Flask app to classify news articles into categories like World, Sports, Business, and Technology.</em></p>
+  </div>
 </section>
 
 <div style="margin: 20px 0; text-align: center;">
-  <a href="https://nlp-projects-izkh.onrender.com/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-align: center; text-decoration: none; font-weight: bold; border-radius: 4px; margin-bottom: 15px;">
-    🚀 Try the Live Demo
-  </a>
   <img src="demo.png" 
        alt="News Classification App Screenshot" 
        style="width: 600px; height: auto; border: 1px solid #ccc; border-radius: 8px; display: block; margin: 0 auto;" />
